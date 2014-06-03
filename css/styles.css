@@ -1,0 +1,17 @@
+body {
+	background: #51A8FF;
+	margin: 80px auto;
+	width: 500px;
+	color: white;
+}
+	
+h1 {
+	text-align: center;
+}
+
+.fa { display: none;	
+}
+	
+label {
+	text-align: right;
+}
