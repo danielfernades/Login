@@ -1,13 +1,213 @@
 <!doctype html>
 <html lang="es">
-<head>
-	<link rel="stylesheet"  href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-	<script src="main.js"></script>	
-	<meta charset="UTF-8">
-	<title>Document</title>
-</head>
-<body>
-	
-</body>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+		<title>Registro</title>
+		<meta name="description" content"">
+		<link rel="stylesheet" href="css/form.css" />
+		<link rel="stylesheet" href="css/styles.css" media="screen" />
+		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+		<script src="js/main.js"></script>
+		<script src="js/jquery.validate.min.js"></script>
+		<script src="js/jquery.form.min.js"></script>
+		<script src="js/jquery.modal.js"></script>
+	</head>
+<body class="bg-green">
+		<div class="body body-s">		
+			<form action="" id="form" class="form" />
+				<header>Registro</header>
+				
+				<fieldset>					
+					<section>
+						<label class="input">
+							<i class="icon-append icon-user"></i>
+							<input type="text" name="username" placeholder="Usuario" />
+							<b class="tooltip tooltip-right">Ingresa tu Usuario</b>
+						</label>
+					</section>
+					
+					<section>
+						<label class="input">
+							<i class="icon-append icon-envelope-alt"></i>
+							<input type="email" name="email" placeholder="Email" />
+							<b class="tooltip tooltip-right">Ingresa tu direccion E-mail</b>
+						</label>
+					</section>
+					
+					<section>
+						<label class="input">
+							<i class="icon-append icon-lock"></i>
+							<input type="password" name="password" placeholder="Password" id="password" />
+							<b class="tooltip tooltip-right">Ingresa tu password</b>
+						</label>
+					</section>
+					
+					<section>
+						<label class="input">
+							<i class="icon-append icon-lock"></i>
+							<input type="password" name="passwordConfirm" placeholder="Confirmar password" />
+							<b class="tooltip tooltip-right">Confirma tu password</b>
+						</label>
+					</section>
+				</fieldset>
+					
+				<fieldset>
+					<div class="row">
+						<section class="col col-6">
+							<label class="input">
+								<input type="text" name="firstname" placeholder="Nombre" />
+							</label>
+						</section>
+						<section class="col col-6">
+							<label class="input">
+								<input type="text" name="lastname" placeholder="Apellido" />
+							</label>
+						</section>
+					</div>
+					
+					<section>
+						<label class="select">
+							<select name="gender">
+								<option value="0" selected="" disabled="" />Genero
+								<option value="1" />Hombre
+								<option value="2" />Mujer
+								<option value="3" />Otro
+							</select>
+							<i></i>
+						</label>
+					</section>
+					
+					<section>
+						<label class="checkbox"><input type="checkbox" name="subscription" id="subscription" /><i></i>Deseo recibir noticias y ofertas especiales</label>
+						<label class="checkbox"><input type="checkbox" name="terms" id="terms" /><i></i>Estoy de acuerdo con los Terminos y Condiciones
+							 <a href="#Termino" class="modal-opener">Ver +</a>.
+						</label>
+						
+					</section>
+				</fieldset>
+
+				<footer>
+					<button type="submit" name="submit" class="button button-send">Enviar</button>
+					<a href="login.html" class="button">Ingresar</a>
+				</footer>
+
+				<!----      Mensaje Registro       ---->
+				<div class="message">
+					<i class="icon-ok"></i>
+					<p>Tu registro ah sido enviado!</p>
+					<br>
+					<p>Porfavor verifica tu correo para completarlo!</p>
+					<a href="login.html" class="button button-secondary">Regresar</a>
+				</div>
+			</form>			
+		</div>
+
+
+		<!----      Terminos y condiciones       ---->
+		<form action="" id="Termino" class="form form-modal" />
+			<header>Terminos y condiciones</header>
+			
+			<fieldset>					
+				<section>
+					<p>Gracias por visitar esta página web. Por favor, lee atentamente los Términos y Condiciones contenidos en este documento, ya que cada vez que se usa esta página web se están aceptando los Términos y Condiciones que aquí se exponen.</p>
+<br>
+	<h3>Política de Privacidad de la página web</h3>
+<br>
+	<p>Cualquier material o dato personal enviado a las páginas web del Grupo MorroCode queda amparado por la política de privacidad de dicho Grupo y por la protección de datos personales expuesta en el Comunicado de Privacidad que se encuentra en esta misma página web.</p>
+<br>
+Exactitud, carácter completo y puntualidad de la información
+<br>
+	<p>Aunque usamos todos los medios a nuestro alcance para asegurar la exactitud y el carácter completo de la información contenida en esta página web. No asumimos responsabilidad alguna en el caso de que la información que se encuentra disponible en la misma no sea exacta o completa. Cualquier modificación que hagas sobre el material disponible en esta página web se realizará por tu cuenta y riesgo. Asimismo, aceptas que será responsabilidad tuya comprobar los eventuales cambios que se puedan producir. </p>
+<br>
+Transmisión
+<br>
+	<p>Cualquier material o comunicación no personal que transmitas a esta página web por e-mail o cualquier otro medio, incluyendo datos, preguntas, comentarios, sugerencias o similares, es y será tratada como no confidencial y sin derechos de propiedad. Cualquier cosa que transmitas o que coloques en la página pasa a ser propiedad de MorroCode y se puede utilizar para cualquier finalidad, incluyendo, sin carácter limitativo, la reproducción, acceso, transmisión, publicación, emisión y colocación de contenidos en la web. Aún más, el Grupo MorroCode es totalmente libre de usar, para cualquier finalidad que estime oportuna (incluyendo, sin carácter limitativo, el desarrollo, fabricación, publicidad y marketing de productos), las ideas, material gráfico, invenciones, desarrollos, sugerencias o conceptos en general contenidos en cualquier comunicación que envíes a esta página web. Dicho uso no tendrá compensación para la parte que ha facilitado la información. Facilitando información, también estás garantizando que eres el propietario del material/contenido proporcionado, que no es de carácter difamatorio y que su uso por parte del Grupo MorroCode no violará derechos de terceras personas ni comportará un incumplimiento por nuestra parte de la legislación aplicable. El Grupo MorroCode no tiene ninguna obligación de utilizar la información facilitada.</p>
+<br>
+Derechos de propiedad intelectual ó Marca registrada por MorroCode. Todos los derechos reservados.
+<br>
+	<p>Todos los derechos de autor y demás derechos de propiedad intelectual referentes a los textos, imágenes y materiales en general contenidos en esta página web son propiedad del Grupo MorroCode o han sido incluidos con la autorización de su correspondiente propietario.
+	Puedes navegar por esta página web, reproducir extractos por medio de impresión y realizar descargas a un disco duro o a los efectos de distribución a otras personas físicas. Todo esto se puede realizar únicamente bajo la condición de mantener intactas todas las notas relativas a derechos de autor y a la propiedad de la página y que la mención mostrada anteriormente de marca registrada aparezca en tales reproducciones. No se debe vender o distribuir ninguna reproducción de parte alguna de esta página web con fines de lucro comercial, ni tampoco podrá ser modificada o incorporada a ningún otro trabajo, publicación o página web.</p>
+<br>
+	<p>Las marcas registradas, logotipos, caracteres y marcas de servicio (todo ello denominado, en conjunto, “marcas registradas”) incorporadas en esta página web pertenecen a la Société des Produits MorroCode S.A., que forma parte del Grupo MorroCode. No se debe interpretar, en ningún caso, que alguno de los contenidos de esta página web pueda significar la concesión de alguna autorización o derecho a utilizar alguna de las marcas comerciales incorporadas en la página. El uso o el abuso de las marcas registradas mostradas tanto en esta página web como en cualquier otro contenido de la misma, salvo lo previsto en estos Términos y Condiciones, queda estrictamente prohibido. Asimismo, advertimos que el Grupo MorroCode defenderá sus derechos de propiedad intelectual con el máximo rigor que permita la ley.</p>
+<br>
+Enlaces con otras páginas web
+<br>
+	<p>Los enlaces existentes en las páginas web del Grupo MorroCode te pueden llevar fuera de la red  y sistemas del Grupo. En ese caso, el Grupo MorroCode no aceptará ninguna responsabilidad en relación al contenido, exactitud y funcionamiento de las páginas web de terceras personas. Los enlaces se proporcionan de buena fe y el Grupo MorroCode no puede ser responsable por las modificaciones que posteriormente se produzcan en páginas web de terceros para las cuales proporcionamos un enlace. La inclusión de un enlace para conectarse con otras páginas web no implica asunción de responsabilidades en relación a esas páginas por parte del Grupo MorroCode. Te recomendamos encarecidamente que estés informado y que leas atentamente las notas legales y de privacidad de todas las páginas web que visites.</p>
+<br>
+Garantías y exenciones de responsabilidad
+<br>
+El uso de esta página web es exclusivamente de tu cuenta y riesgo.
+<br>
+Garantías
+<br>
+Esta página web se ofrece “cuando es posible” y “tal cual está” y, por tanto, el Grupo MorroCode no da garantías de ningún tipo, ya sean explícitas, implícitas, legales o de otro tipo (incluso las garantías implícitas de comerciabilidad o satisfacción del nivel de calidad y de adecuación a un propósito particular), incluyendo garantías o compromisos en relación a que el material de esta página web será completo, exacto, fiable, puesto al día, respetuoso con los derechos de terceros, que el acceso a esta página web no sufrirá interrupciones, no presentará errores y estará exento de virus, que esta página web será segura y que cualquier opinión o consejo del Grupo MorroCode obtenido a través de esta página web será exacto o fiable, por todo lo cual se indica expresamente que no se asumirá ningún compromiso o garantía sobre los aspectos enumerados.
+<br>
+Por favor, ten en cuenta que, en algunas jurisdicciones, es posible que no se permita la exclusión de garantías implícitas, por lo que algunas de estas exclusiones pueden no ser de aplicación para ti. Por ello, te rogamos que consultes la legislación local.
+<br>
+Nos reservamos el derecho de restringir, suspender o cancelar, sin previo aviso y en cualquier momento, tu acceso a esta página web o a una parte de la misma y a cualquier funcionalidad incorporada en la página.
+<br>
+Responsabilidad
+<br>
+Tanto el Grupo MorroCode como cualquier tercero implicado en la creación, producción o distribución de esta página web en nuestro nombre no tendrán ningún tipo de responsabilidad, en ningún caso, por daños directos, fortuitos, consecutivos, indirectos, especiales o punitivos ni por costes, pérdidas o responsabilidades, cualquiera que sea la forma en que se deriven de tu acceso, uso o incapacidad de uso, del cambio en el contenido de esta página web, de cualquier otra página web a la que accediste por medio de un enlace proporcionado en esta página o de la máxima amplitud permitida por la legislación aplicable, motivados por cualquier medida que nosotros tomamos o dejamos de tomar como resultado de algún mensaje que nos enviaste por e-mail.
+<br>
+Tanto el Grupo MorroCode como cualquier tercero implicado en la creación, producción o distribución de esta página web no tendrán ninguna responsabilidad derivada de mantener el material y los servicios que se encuentran disponibles en esta página o de realizar correcciones, actualizaciones o eliminaciones de los mismos. Cualquier material contenido en esta página web está sujeto a cambios sin previo aviso.
+<br>
+Aún más, el Grupo MorroCode no tendrá ningún tipo de responsabilidad, en ningún caso, por cualquier daño sufrido a consecuencia de algún virus que pueda haber infectado tu ordenador u otros aparatos de tu propiedad por causa de tu acceso, uso o descargas de cualquier material de esta página web. Si optas por descargar material desde esta página web, esa acción se realiza por tu exclusiva cuenta y riesgo.
+<br>
+Con la máxima amplitud permitida por la legislación aplicable, declaras renunciar expresamente a efectuar cualquier reclamación contra el Grupo MorroCode y sus responsables, directores, empleados, proveedores y programadores que se pueda derivar de tu uso o acceso a esta página web.
+<br>
+Actividades prohibidas
+<br>
+Tienes prohibido realizar cualquier acto que, a juicio del Grupo MorroCode, se pueda considerar inapropiado y/o llegar a considerarse como un acto ilegal o que esté prohibido de acuerdo con la legislación aplicable a esta página web, incluyendo, sin carácter limitativo, los siguientes:
+<br>
+Cualquier acto que constituiría un incumplimiento de la privacidad (incluyendo transferencias a la página web de información privada sin la autorización de la persona afectada) o de cualquier otro de los derechos legales de las personas físicas;
+<br>
+Usar esta página web para difamar o calumniar al Grupo MorroCode, sus empleados u otras personas físicas, o actuar de tal manera que se desacredite el buen nombre del Grupo MorroCode;
+<br>
+Transferir a la página web archivos que contengan virus que puedan causar daños a la propiedad del Grupo MorroCode o a la propiedad de personas físicas; y
+<br>
+Colocar o transmitir a esta página web cualquier material no autorizado, incluyendo, sin carácter limitativo, material que probablemente cause, a juicio nuestro, molestias o perjuicios, o bien, violando los sistemas o la seguridad de la red del Grupo MorroCode o de terceras personas, material que sea difamatorio, racista, obsceno, amenazador, de contenido pornográfico o que presente cualquier forma de ilegalidad en general.
+<br>
+ 
+
+Jurisdicción y legislación aplicable
+<br>
+El usuario de esta página web y el Grupo MorroCode aceptan que cualquier controversia o reclamación derivada o referente al uso de esta página web se resolverá según las leyes de [introducir un país] y se someterá exclusivamente a la jurisdicción de los Juzgados y Tribunales de [introducir una ciudad] [introducir un país].
+<br>
+Para páginas web informativas
+<br>
+El material y la información del Grupo MorroCode que aparecen en esta página web han sido incluidos únicamente para los usuarios de [Mexico]. El Grupo MorroCode no asume ningún compromiso en relación a que el material y la información de esta página web sean apropiados o se encuentren disponibles en zonas distintas a [introducir un país].
+<br>
+El usuario de esta página web y el Grupo MorroCode aceptan que cualquier controversia o reclamación derivada o referente al uso de esta página web se resolverá según las leyes de [Mexico] y se someterá exclusivamente a la jurisdicción de los Juzgados y Tribunales de [Nuevo Laredo] [Mexico].
+<br>
+PARA PÁGINAS WEB GLOBALES
+<br>
+Para páginas web que ofrecen productos
+<br>
+El Grupo MorroCode no asume ningún compromiso en relación a que los productos y el contenido de esta página web sean apropiados o se encuentren disponibles en todos los países desde los cuales se puede acceder a esta página web. Por favor, ponte en contacto con nuestros para conseguir más información sobre cuál es la disponibilidad de productos en tu país. Los productos que aparecen en esta página web son meras representaciones visuales y, por consiguiente, no son un reflejo exacto de su tamaño real ni de los colores de sus envases, etc.
+<br>
+El usuario de esta página web y el Grupo MorroCode aceptan que cualquier controversia o reclamación derivada o referente al uso de esta página web se resolverá con la máxima amplitud posible según las leyes suizas y se someterá exclusivamente a la jurisdicción de los Juzgados y Tribunales de Suiza.
+<br>
+
+Cookies
+<br>
+MorroCode utiliza la tecnología tracking ("cookies"). La política del Grupo MorroCode en relación al uso de cookies se expone en el documento de política de privacidad y datos personales del Grupo MorroCode disponible en esta página web.
+<br>
+Actualización de notas legales
+<br>
+Nos reservamos el derecho de realizar cambios y correcciones en esta nota. Por favor, consulta esta página de vez en cuando para revisar estas y nuevas informaciones adicionales.
+<br>
+Copyright © MorroCode 2014  </p>
+				</section>
+				
+			</fieldset>
+			<footer>
+				
+				<a href="#" class="button button-close modal-closer">Cerrar</a>
+			</footer>
+			<span></span>
+		</form>
+		
+	</body>
 </html>

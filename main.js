@@ -69,3 +69,58 @@ $(document).ready(function() {
 		
 	})
 })
+
+$(function()
+			{
+				// Validacion
+				$("#login").validate(
+				{					
+					// Reglas del form de validacion
+					rules:
+					{
+						email:
+						{
+							required: true,
+							email: true
+						},
+						password:
+						{
+							required: true,
+							minlength: 3,
+							maxlength: 20
+						}
+					},
+										
+					// Mensajes del form de validacion
+					messages:
+					{
+						email:
+						{
+							required: 'Porfavor ingresa tu direccion E-mail',
+							email: 'Porfavor ingresa una direccion E-mail valida'
+						},
+						password:
+						{
+							required: 'Porfavor ingresa tu password'
+						}
+					},					
+					
+					// Ajax form submit					
+					submitHandler: function(form)
+					{
+						$(form).ajaxSubmit(
+						{
+							success: function()
+							{
+								$("#login").addClass('submited');
+							}
+						});
+					},
+					
+					// Dejar codigo en paz...
+					errorPlacement: function(error, element)
+					{
+						error.insertAfter(element.parent());
+					}
+				});
+			});			

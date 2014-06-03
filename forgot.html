@@ -1,25 +1,60 @@
 <!doctype html>
-
-	
-
 <html lang="es">
 <head>
 	<meta charset="UTF-8">
-	<title>Olvidaste tu password?</title>
-	<meta name="description" content"">
-	<link rel="stylesheet"  href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"><link rel="stylesheet" href="css/styles.css">
-	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-	<script src="js/main.js"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+		<title>Password</title>
+		<meta name="description" content"">
+		<link rel="stylesheet" href="css/form.css" />
+		<link rel="stylesheet" href="css/styles.css" media="screen" />
+		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+		<script src="js/main.js"></script>
+		<script src="js/jquery.validate.min.js"></script>
+		<script src="js/jquery.form.min.js"></script>
+		<script src="js/jquery.modal.js"></script>
 </head>
-<body>
-		<h1>Olvidaste tu contraseña?</h1>
-		<form id="forgot">
-			<p>
-				<label for="email">Introudzca el email de registro</label>
-				<input type="text" class="form-control" id="email" name="email"/>
-			</p>
-			<input class="btn btn-primary" type="submit" value="Recuperar password">
-		</form>
+<body class="bg-cyan">
+	<div class="body body-s">
+	
+    <form class="form" id="forgot" method="post">
+         <header>¿Olvidaste tu Password?</header>
+         <div class="logo">
+         	<header>MorroCode - Password</header>
+    	</div>
+		
+		<fieldset>			
+					<section>
+						<div class="row">
+							<label class="label col col-4">E-mail</label>
+							<div class="col col-8">
+								<label class="input">
+									<i class="icon-append icon-envelope-alt"></i>
+									<input type="email" class="form-control" name="email" placeholder="E-mail"/>
+									<b class="tooltip tooltip-right">E-mail de Registro</b>
+								</label>
+								<div class="note">
+									<a href="#Gay" class="modal-opener">Eres gay?</a>
+								</div>
+							</div>
+						</div>
+					</section>
+		</fieldset>
+				
+				<footer>
+					<button type="submit" name="submit" class="button button-send" data-loading-text="Loading...">Recuperar Password</button>
+					<a href="login.html" class="button">Login</a>
+				</footer>
+
+    </form>
 		<span></span>
+		<!----      Eres Gay?       ---->
+		<form action="" id="Gay" class="form form-modal" />
+			<header>Dudas de tu Homosexualidad</header>
+			
+			<fieldset>					
+				<section>
+					<p>Yo Sabia Que Si Eres Gay Morro jaja...</p>
+				</section>
+			</fieldset>
 	</body>
 	</html>	
