@@ -12,6 +12,10 @@ h1 {
 .fa { display: none;	
 }
 	
+a {
+	color:white;
+}
 label {
-	text-align: right;
+	text-align: center;
+	display: block;
 }
