@@ -49,11 +49,11 @@ $(document).ready(function() {
 			//$('span').html("Codigo enviado a su email");
 			if (resp.error>0)
 			{
-				alert(resp.msg);
+					$('span').html(resp.msg);
 			}
 			else
 			{
-				alert(resp.msg);
+					alert(resp.msg);
 				self.location="login.html";
 			}
 
