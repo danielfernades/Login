@@ -1,3 +1,4 @@
+ini_set('display_errors','Off');
 $(document).ready(function() {
  
 	$('#login').submit(function(e) {
@@ -53,13 +54,13 @@ $(document).ready(function() {
 			}
 			else
 			{
-					alert(resp.msg);
+					//alert(resp.msg);
 				self.location="login.html";
 			}
 
 		})
 		.fail(function(resp) {  //false
-			alert(resp.error);
+			alert('error');
 			$('span').html("Error al procesar");
 		})
 		.always(function() {

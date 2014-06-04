@@ -16,6 +16,7 @@ if (isset($tag) && $tag !== '') {
 		    if  (mysql_num_rows($resEmp)>0)
     		{
         		//<script language='JavaScript'>alert('usuario si existe'); </script>;
+                //echo "hola2";
         		echo true;
     		}
     		else
@@ -43,11 +44,41 @@ if (isset($tag) && $tag !== '') {
             {
                 $row = mysql_fetch_array($resEmp);
                 $id_usuario_req=$row['id_user'];
+                $query="select fecha_expiracion,now() as fecha_actual from forgot_password where id_user='".$id_usuario_req."'";
+                $res=mysql_query($query,$conexion)or die(mysql_error());
+                if (mysql_num_rows($res)>0)
+                {
+                    $row=mysql_fetch_array($res);
+                    
+                   // $fecha_actual=(new \DateTime())->format('Y-m-d H:i:s');
+                    $fecha_actual=date_create($row['fecha_actual']);
+                    $fecha_exp=date_create($row['fecha_expiracion']);
+                    //echo $fecha_actual->format('Y-m-d H:i:s');
+                    if ($fecha_exp>$fecha_actual)
+                    {
+                        //echo $row['fecha_expiracion'];
+                      //  echo $fecha_actual;
+                        //echo strftime("%F %T");
+                        $output=array('error'=> '1','msg'=>'Ya se te ah enviado un codigo al email registrado, por favor verificalo');
+                        echo json_encode($output,JSON_FORCE_OBJECT);
+                        return true;
+                    }
+                    else
+                    {
+                        mysql_query("delete from forgot_password where id_user='".$id_usuario_req."'",$conexion);
+                    }
+                }
+
                 $query="INSERT INTO forgot_password (id_user,codigo,fecha_expiracion) values ('".$id_usuario_req."',LEFT(SHA1(DATE_FORMAT(NOW(), '%d %m %Y')+".$id_usuario_req."),20),ADDDATE(NOW(),INTERVAL 60 MINUTE))";
                 mysql_query($query,$conexion)or die(mysql_error());
-               
+
                 $query="SELECT * FROM forgot_password where id_user='".$id_usuario_req."'";
-                $resEmp = mysql_query($query,$conexion)or die(mysql_error());
+                try{
+                $resEmp = mysql_query($query,$conexion) or die('error');
+                    }
+                    catch(exception $e){echo 'popo';}
+                if (mysql_error()){
+                echo "hola despues rror";}
                 $row = mysql_fetch_array($resEmp);
 
                 include("class.phpmailer.php"); 
@@ -79,6 +110,7 @@ if (isset($tag) && $tag !== '') {
 
 <tr>
 <p>Para cambiar el password ingresa a http://localhost/Login/reset.html?code=".$row['codigo']."</p>
+<p>Este codigo solo es valido hasta el dia ".$row['fecha_expiracion']."</p>
 </tr>
 
 <tr>

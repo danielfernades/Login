@@ -59,7 +59,7 @@ $(document).ready(function() {
 
 		})
 		.fail(function(resp) {  //false
-			alert(resp.error);
+			//alert(resp.error);
 			$('span').html("Error al procesar");
 		})
 		.always(function() {
