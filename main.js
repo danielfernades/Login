@@ -55,12 +55,53 @@ $(document).ready(function() {
 			else
 			{
 					//alert(resp.msg);
-				self.location="login.html";
+				//self.location="login.html";
 			}
 
 		})
 		.fail(function(resp) {  //false
 			alert('error');
+			$('span').html("Error al procesar");
+		})
+		.always(function() {
+				
+		});
+ 		//alert('usuario si existe');
+		
+	})
+})
+
+$(document).ready(function() {
+ 
+	$('#register').submit(function(e) {
+		e.preventDefault();
+ 		
+		var data = $(this).serializeArray();
+		data.push({name: 'tag', value: 'register'});
+		//data.push({name:'email_text',value: document.getElementById('email').value});
+		//alert(data[0].value);
+		$.ajax({
+			url: 'main.php',
+			type: 'POST',
+			dataType: 'json',
+			data: data
+			
+		})
+		.done(function(resp) {  //true
+			//$('span').html("Codigo enviado a su email");
+			if (resp.error>0)
+			{
+					$('span').html(resp.msg);
+			}
+			else
+			{
+					//alert(resp.msg);
+				self.location="login.html";
+			}
+
+		})
+		.fail(function(resp) {  //false
+			//alert('error');
 			$('span').html("Error al procesar");
 		})
 		.always(function() {

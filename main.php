@@ -1,4 +1,10 @@
 <?php 
+
+
+function enviarEmail()
+{
+    
+}
 //<script type="text/javascript">alert("Hola");</script>
 $tag = $_POST['tag'];
 
@@ -29,12 +35,12 @@ if (isset($tag) && $tag !== '') {
         elseif ($tag=='forgot')
         {
             $mail_destino=$_POST['email'];
-            if ($mail_destino=='')
+           /* if ($mail_destino=='')
             {
                 $output=array('error'=> '1','msg'=>'Debe capturar un email');
                 echo json_encode($output,JSON_FORCE_OBJECT);
                 return true;
-            }
+            }*/
 
             $conexion = mysql_connect("localhost", "root", "");
             mysql_select_db("prueba", $conexion);
@@ -78,7 +84,8 @@ if (isset($tag) && $tag !== '') {
                     }
                     catch(exception $e){echo 'popo';}
                 if (mysql_error()){
-                echo "hola despues rror";}
+            //    echo "hola despues rror";
+            }
                 $row = mysql_fetch_array($resEmp);
 
                 include("class.phpmailer.php"); 
@@ -97,31 +104,31 @@ if (isset($tag) && $tag !== '') {
                 $mail->Subject = "Recupera tu password!"; 
                 $mail->AltBody = "Este es un mensaje de prueba."; 
                 $mail->MsgHTML("<table align=\"center\">
-<caption>Correo de prueba</caption>
-<tbody>
-<tr>
-<h1><b>MLP</b></h1>
+                                <caption>Correo de prueba</caption>
+                                <tbody>
+                                <tr>
+                                <h1><b>MLP</b></h1>
 
-</tr>
+                                </tr>
 
-<tr>
-<h2>Informacion</h2>
-</tr>
+                                <tr>
+                                <h2>Informacion</h2>
+                                </tr>
 
-<tr>
-<p>Para cambiar el password ingresa a http://localhost/Login/reset.html?code=".$row['codigo']."</p>
-<p>Este codigo solo es valido hasta el dia ".$row['fecha_expiracion']."</p>
-</tr>
+                                <tr>
+                                <p>Para cambiar el password ingresa a http://192.168.0.130/Login/reset.html?code=".$row['codigo']."</p>
+                                <p>Este codigo solo es valido hasta el dia ".$row['fecha_expiracion']."</p>
+                                </tr>
 
-<tr>
-<th>Firma</th>
-</tr>
+                                <tr>
+                                <th>Firma</th>
+                                </tr>
 
-<tr>
-<th>Correos</th>
-</tr>
-</tbody>
-</table>"); 
+                                <tr>
+                                <th>Correos</th>
+                                </tr>
+                                </tbody>
+                                </table>"); 
                 //$mail->AddAttachment("files/files.zip"; 
                 //$mail->AddAttachment("files/img03.jpg"; 
                 $mail->AddAddress($mail_destino, "Manuel Marin"); 
@@ -135,7 +142,7 @@ if (isset($tag) && $tag !== '') {
                 }
                 else 
                 {
-                    $output=array('error'=> '0','msg'=>'Código enviado el email');
+                    $output=array('error'=> '0','msg'=>'Código enviado al email');
                     echo json_encode($output,JSON_FORCE_OBJECT);
                     
                 }
@@ -147,6 +154,106 @@ if (isset($tag) && $tag !== '') {
             }
 
            
+        }
+        elseif($tag=='register')
+        {
+            $username=$_POST['username'];
+            $email=$_POST['email'];
+            $password=$_POST['password'];
+            $name=$_POST['firstname'];
+            $lastname=$_POST['lastname'];
+            $gender=$_POST['gender'];
+
+            $conexion = mysql_connect("localhost", "root", "");
+            mysql_select_db("prueba", $conexion);
+           
+            $query="SELECT * FROM USUARIOS WHERE USERNAME='".$username."'";
+            $res=mysql_query($query,$conexion)or die(mysql_error());
+
+            if (mysql_num_rows($res)>0)
+            {
+                $output=array('error'=> '1','msg'=>'El usuario ya se ha registrado');
+                echo json_encode($output,JSON_FORCE_OBJECT);
+                return true;
+            }    
+
+            $query="SELECT * FROM USUARIOS WHERE email='".$email."'";
+            $res=mysql_query($query,$conexion)or die(mysql_error());
+
+            if (mysql_num_rows($res)>0)
+            {
+                $output=array('error'=> '2','msg'=>'El email ya esta registrado');
+                echo json_encode($output,JSON_FORCE_OBJECT);
+                return true;
+            }    
+            
+            $query="SELECT * FROM USUARIOS WHERE USERNAME='".$name."'";
+            $res=mysql_query($query,$conexion)or die(mysql_error());
+
+            if (mysql_num_rows($res)>0)
+            {
+                $output=array('error'=> '1','msg'=>'El usuario ya se ha registrado');
+                echo json_encode($output,JSON_FORCE_OBJECT);
+                return true;
+            }    
+
+            $query="INSERT INTO USUARIOS (email,pass,username,name,lastname,gender) values ('#email',left('#password',20),'#username','#name','#lastname','#gender')";
+            $query=str_replace('#name', $name,str_replace('#username', $username,str_replace('#password', sha1($password), str_replace('#email', $email, $query))));
+            $query=str_replace('#gender', $gender, str_replace('#lastname', $lastname, $query));
+            $res=mysql_query($query,$conexion)or die(mysql_error());
+
+
+            include("class.phpmailer.php"); 
+            include("class.smtp.php"); 
+           
+            $mail = new PHPMailer(); 
+            $mail->IsSMTP(); 
+            $mail->SMTPAuth = true; 
+            $mail->SMTPSecure = "ssl"; 
+            $mail->Host = "smtp.gmail.com"; 
+            $mail->Port = 465; 
+            $mail->Username = "mm.marin16@gmail.com"; 
+            $mail->Password = "alejandro1990";
+            $mail->From = "mm.marin16@gmail.com"; 
+            $mail->FromName = "Test Login"; 
+            $mail->Subject = "Bienvnido a nuestra pagina!"; 
+            $mail->AltBody = "Registro exitoso!"; 
+            $mail->MsgHTML("<table align=\"center\">
+                            <caption>Registro de Usuario</caption>
+                            <tbody>
+                            <tr>
+                            <h1><b>MLP</b></h1>
+
+                            </tr>
+
+                            <tr>
+                            <h2>Informacion</h2>
+                            </tr>
+
+                            <tr>
+                            <p>Gracias por registrate con nosotros</p>
+                            <p></p>
+                            </tr>
+
+                            <tr>
+                            <th>morrocode</th>
+                            </tr>
+
+                            <tr>
+                            <th>admin@morrocode.com</th>
+                            </tr>
+                            </tbody>
+                            </table>"); 
+            //$mail->AddAttachment("files/files.zip"; 
+            //$mail->AddAttachment("files/img03.jpg"; 
+            $mail->AddAddress($email, $name.' '.$lastname); 
+            $mail->IsHTML(true); 
+            if(!$mail->Send()) 
+                return false;
+
+            $output=array('error'=> '0','msg'=>'Usuario registrado exitosamente');
+            echo json_encode($output,JSON_FORCE_OBJECT);
+            return true;
         }
     
     }

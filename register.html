@@ -15,14 +15,14 @@
 	</head>
 <body class="bg-green">
 		<div class="body body-s">		
-			<form action="" id="form" class="form" />
+			<form id="register" class="form" />
 				<header>Registro</header>
 				
 				<fieldset>					
 					<section>
 						<label class="input">
 							<i class="icon-append icon-user"></i>
-							<input type="text" name="username" placeholder="Usuario" />
+							<input type="text" name="username" placeholder="Usuario" id="username" />
 							<b class="tooltip tooltip-right">Ingresa tu Usuario</b>
 						</label>
 					</section>
@@ -30,7 +30,7 @@
 					<section>
 						<label class="input">
 							<i class="icon-append icon-envelope-alt"></i>
-							<input type="email" name="email" placeholder="Email" />
+							<input type="email" name="email" placeholder="Email" id="email"/>
 							<b class="tooltip tooltip-right">Ingresa tu direccion E-mail</b>
 						</label>
 					</section>
@@ -46,7 +46,7 @@
 					<section>
 						<label class="input">
 							<i class="icon-append icon-lock"></i>
-							<input type="password" name="passwordConfirm" placeholder="Confirmar password" />
+							<input type="password" name="passwordConfirm" placeholder="Confirmar password" id="passwordc"/>
 							<b class="tooltip tooltip-right">Confirma tu password</b>
 						</label>
 					</section>
@@ -56,19 +56,19 @@
 					<div class="row">
 						<section class="col col-6">
 							<label class="input">
-								<input type="text" name="firstname" placeholder="Nombre" />
+								<input type="text" name="firstname" placeholder="Nombre" id="firstname"/>
 							</label>
 						</section>
 						<section class="col col-6">
 							<label class="input">
-								<input type="text" name="lastname" placeholder="Apellido" />
+								<input type="text" name="lastname" placeholder="Apellido" id="lastname"/>
 							</label>
 						</section>
 					</div>
 					
 					<section>
 						<label class="select">
-							<select name="gender">
+							<select name="gender" id='gender'>
 								<option value="0" selected="" disabled="" />Genero
 								<option value="1" />Hombre
 								<option value="2" />Mujer
@@ -98,7 +98,7 @@
 					<p>Tu registro ah sido enviado!</p>
 					<br>
 					<p>Porfavor verifica tu correo para completarlo!</p>
-					<a href="login.html" class="button button-secondary">Regresar</a>
+					<a href="login.html" class="button button-primary">Regresar</a>
 				</div>
 			</form>			
 		</div>
