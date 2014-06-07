@@ -1,10 +1,63 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
 <head>
 	<meta charset="UTF-8">
-	<title>Document</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+	<title>Reset</title>
+	<meta name="description" content"">
+		<link rel="stylesheet" href="css/form.css" />
+		<link rel="stylesheet" href="css/styles.css" media="screen" />
+		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+		<script src="js/main.js"></script>
+		<script src="js/jquery.validate.min.js"></script>
+		<script src="js/jquery.form.min.js"></script>
+		<script src="js/jquery.modal.js"></script>
 </head>
-<body>
-	!
-</body>
-</html>
+<body class="bg-pink">
+	<div class="body body-s">
+	
+    <form class="form" id="reset" method="post">
+         <header></header>
+         <div class="logo">
+         	<header>Password Nuevo</header>
+    	</div>
+		
+		<fieldset>			
+					<section>
+						<label class="input">
+							<i class="icon-append icon-lock"></i>
+							<input type="password" name="password" placeholder="Password Nuevo" id="password" />
+							<b class="tooltip tooltip-right">Ingresa tu password</b>
+						</label>
+					</section>
+					
+					<section>
+						<label class="input">
+							<i class="icon-append icon-lock"></i>
+							<input type="password" name="passwordConfirm" placeholder="Confirmar password" id="passwordc"/>
+							<b class="tooltip tooltip-right">Confirma tu password</b>
+						</label>
+					</section>
+		</fieldset>
+				
+				<footer>
+					<button type="submit" name="submit" class="button button-send" data-loading-text="Loading...">Cambiar Password</button>
+					<a href="login.html" class="button">Login</a>
+				</footer>
+
+				<!----      Mensaje Registro       ---->
+				<div class="message">
+					<i class="icon-ok"></i>
+					<p>Se ah Cambiado tu Password Exitosamente!</p>
+					<br>
+					<p>Gracias!</p>
+					<section>
+						<a href="login.html" class="button button-primary">Regresar</a>
+					</section>
+				</div>
+
+    </form>
+		<span></span>
+		
+	</body>
+	</html>	
