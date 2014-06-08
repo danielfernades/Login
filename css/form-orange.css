@@ -1,0 +1,58 @@
+/**/
+/* normal state */
+/**/
+.form .toggle i:before {
+	background-color: #fd7337;	
+}
+.form .button {
+	background-color: #fd7337;
+}
+
+
+/**/
+/* hover state */
+/**/
+.form .input:hover input,
+.form .select:hover select,
+.form .textarea:hover textarea,
+.form .radio:hover i,
+.form .checkbox:hover i,
+.form .toggle:hover i {
+	border-color: #f5b093;
+}
+.form .rating input + label:hover,
+.form .rating input + label:hover ~ label {
+	color: #fd7337;
+}
+
+
+/**/
+/* focus state */
+/**/
+.form .input input:focus,
+.form .select select:focus,
+.form .textarea textarea:focus,
+.form .radio input:focus + i,
+.form .checkbox input:focus + i,
+.form .toggle input:focus + i {
+	border-color: #fd7337;
+}
+
+
+/**/
+/* checked state */
+/**/
+.form .radio input + i:after {
+	background-color: #fd7337;	
+}
+.form .checkbox input + i:after {
+	color: #fd7337;
+}
+.form .radio input:checked + i,
+.form .checkbox input:checked + i,
+.form .toggle input:checked + i {
+	border-color: #fd7337;	
+}
+.form .rating input:checked ~ label {
+	color: #fd7337;	
+}
