@@ -12,18 +12,69 @@
 		<script src="js/jquery.validate.min.js"></script>
 		<script src="js/jquery.form.min.js"></script>
 		<script src="js/jquery.modal.js"></script>
+		<script type="text/javascript">
+		var id_user;
+
+		function getParameterByName( name )
+		{
+		  name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+		  var regexS = "[\\?&]"+name+"=([^&#]*)";
+		  var regex = new RegExp( regexS );
+		  var results = regex.exec( window.location.href );
+		  if( results == null )
+		    return "";
+		  else
+		    return decodeURIComponent(results[1].replace(/\+/g, " "));
+		}
+
+		function carga()
+		{	
+			var prodId = window.getParameterByName("code");
+			//alert(prodId);
+			var form=document.getElementById("reset");
+			var data = $(form).serializeArray();
+			data.push({name:'tag',value:'check_id'});
+			data.push({name:'code',value:prodId});
+			$.ajax({
+				url: 'main.php',
+				type: 'POST',
+				dataType: 'json',
+				data: data
+				
+			})
+			.done(function(resp) {  //true
+				if (resp.error>0)
+				{
+					document.write('');
+					alert(resp.msg);
+					self.location="login.html";
+					
+				}
+				else
+				{
+					id_user=resp.msg;
+					//alert(resp.msg);
+					//$('span').html(resp.msg);
+				}
+
+		})			
+			//alert("hola2");
+			
+			
+		}
+		</script>
 </head>
-<body class="bg-pink">
+<body class="bg-pink" onload="carga()">
 	<div class="body body-s">
 	
-    <form class="form" id="reset" method="post">
+    <form class="form" id="reset" method="post" >
          <header></header>
          <div class="logo">
          	<header>Password Nuevo</header>
     	</div>
 		
 		<fieldset>			
-					<section>
+					<section id="reset_">
 						<label class="input">
 							<i class="icon-append icon-lock"></i>
 							<input type="password" name="password" placeholder="Password Nuevo" id="password" />

@@ -1,9 +1,33 @@
 <?php 
 
 
-function enviarEmail()
+function enviarEmail($mail_destino,$nombre_destino,$subject,$body)
 {
-    
+
+            include("class.phpmailer.php"); 
+            include("class.smtp.php"); 
+           
+            $mail = new PHPMailer(); 
+            $mail->IsSMTP(); 
+            $mail->SMTPAuth = true; 
+            $mail->SMTPSecure = "ssl"; 
+            $mail->Host = "smtp.gmail.com"; 
+            $mail->Port = 465; 
+            $mail->Username = "mm.marin16@gmail.com"; 
+            $mail->Password = "alejandro1990";
+            $mail->From = "mm.marin16@gmail.com"; 
+            $mail->FromName = "Test Login"; 
+            $mail->Subject = $subject; 
+           // $mail->AltBody = "Registro exitoso!"; 
+            $mail->MsgHTML($body); 
+            //$mail->AddAttachment("files/files.zip"; 
+            //$mail->AddAttachment("files/img03.jpg"; 
+            $mail->AddAddress($mail_destino, $nombre_destino); 
+            $mail->IsHTML(true); 
+            if(!$mail->Send()) 
+                return false;
+            else
+                return true;
 }
 //<script type="text/javascript">alert("Hola");</script>
 $tag = $_POST['tag'];
@@ -50,6 +74,7 @@ if (isset($tag) && $tag !== '') {
             {
                 $row = mysql_fetch_array($resEmp);
                 $id_usuario_req=$row['id_user'];
+                $nombre_destino=$row['name'].' '.$row['lastname'];
                 $query="select fecha_expiracion,now() as fecha_actual from forgot_password where id_user='".$id_usuario_req."'";
                 $res=mysql_query($query,$conexion)or die(mysql_error());
                 if (mysql_num_rows($res)>0)
@@ -87,23 +112,7 @@ if (isset($tag) && $tag !== '') {
             //    echo "hola despues rror";
             }
                 $row = mysql_fetch_array($resEmp);
-
-                include("class.phpmailer.php"); 
-                include("class.smtp.php"); 
-               
-                $mail = new PHPMailer(); 
-                $mail->IsSMTP(); 
-                $mail->SMTPAuth = true; 
-                $mail->SMTPSecure = "ssl"; 
-                $mail->Host = "smtp.gmail.com"; 
-                $mail->Port = 465; 
-                $mail->Username = "mm.marin16@gmail.com"; 
-                $mail->Password = "alejandro1990";
-                $mail->From = "mm.marin16@gmail.com"; 
-                $mail->FromName = "Test Login"; 
-                $mail->Subject = "Recupera tu password!"; 
-                $mail->AltBody = "Este es un mensaje de prueba."; 
-                $mail->MsgHTML("<table align=\"center\">
+                $body="<table align=\"center\">
                                 <caption>Correo de prueba</caption>
                                 <tbody>
                                 <tr>
@@ -128,16 +137,15 @@ if (isset($tag) && $tag !== '') {
                                 <th>Correos</th>
                                 </tr>
                                 </tbody>
-                                </table>"); 
-                //$mail->AddAttachment("files/files.zip"; 
-                //$mail->AddAttachment("files/img03.jpg"; 
-                $mail->AddAddress($mail_destino, "Manuel Marin"); 
-                $mail->IsHTML(true); 
-                if(!$mail->Send()) 
+                                </table>"; 
+               
+               
+
+                if(!enviarEmail($mail_destino,$nombre_destino,'Recupera tu password!',$body)) 
                 { 
 
-                    $output=array('error'=> '1','msg'=>( $mail->ErrorInfo));
-                    echo json_encode($output,JSON_FORCE_OBJECT);
+                    $output=array('error'=> '1','msg'=>( 'Error al enviar el echo'));
+                    json_encode($output,JSON_FORCE_OBJECT);
                     
                 }
                 else 
@@ -202,23 +210,8 @@ if (isset($tag) && $tag !== '') {
             $query=str_replace('#gender', $gender, str_replace('#lastname', $lastname, $query));
             $res=mysql_query($query,$conexion)or die(mysql_error());
 
-
-            include("class.phpmailer.php"); 
-            include("class.smtp.php"); 
-           
-            $mail = new PHPMailer(); 
-            $mail->IsSMTP(); 
-            $mail->SMTPAuth = true; 
-            $mail->SMTPSecure = "ssl"; 
-            $mail->Host = "smtp.gmail.com"; 
-            $mail->Port = 465; 
-            $mail->Username = "mm.marin16@gmail.com"; 
-            $mail->Password = "alejandro1990";
-            $mail->From = "mm.marin16@gmail.com"; 
-            $mail->FromName = "Test Login"; 
-            $mail->Subject = "Bienvnido a nuestra pagina!"; 
-            $mail->AltBody = "Registro exitoso!"; 
-            $mail->MsgHTML("<table align=\"center\">
+            $subject="Bienvnido a nuestra pagina!";
+            $body="<table align=\"center\">
                             <caption>Registro de Usuario</caption>
                             <tbody>
                             <tr>
@@ -243,15 +236,61 @@ if (isset($tag) && $tag !== '') {
                             <th>admin@morrocode.com</th>
                             </tr>
                             </tbody>
-                            </table>"); 
-            //$mail->AddAttachment("files/files.zip"; 
-            //$mail->AddAttachment("files/img03.jpg"; 
-            $mail->AddAddress($email, $name.' '.$lastname); 
-            $mail->IsHTML(true); 
-            if(!$mail->Send()) 
-                return false;
+                            </table>";
+            //$firstname.' '.$lastname
 
-            $output=array('error'=> '0','msg'=>'Usuario registrado exitosamente');
+            if (enviarEmail($email,$name.' '.$lastname,$subject,$body))
+            {
+                $output=array('error'=> '0','msg'=>'Usuario registrado exitosamente');
+                echo json_encode($output,JSON_FORCE_OBJECT);
+                return true;
+            }
+
+        }
+        elseif($tag=='check_id')
+        {
+            $codigo=$_POST['code'];
+            $conexion = mysql_connect("localhost", "root", "");
+            mysql_select_db("prueba", $conexion);
+            $queEmp = "SELECT * FROM forgot_password where codigo='".$codigo."' and fecha_expiracion>=now()";
+            $resEmp = mysql_query($queEmp,$conexion)or die(mysql_error());
+            if (mysql_num_rows($resEmp)==0)
+            {
+                $output=array('error'=> '1','msg'=>'El codigo no es valido o ha expirado');
+                echo json_encode($output,JSON_FORCE_OBJECT);
+                return true;
+            }
+            $row=mysql_fetch_array($resEmp);
+            $output=array('error'=> '0','msg'=>$row['id_user']);
+            echo json_encode($output,JSON_FORCE_OBJECT);
+            return true;
+
+        }
+        elseif($tag=='reset_password')
+        {
+            $id_user=$_POST['id_user'];
+            $conexion = mysql_connect("localhost", "root", "");
+            mysql_select_db("prueba", $conexion);
+           
+            $query = "SELECT * FROM forgot_password where id_user='".$id_user."' and fecha_expiracion>=now()";
+            $res=mysql_query($query,$conexion)or die(mysql_error());
+
+            if (mysql_num_rows($res)==0)
+            {   
+                $output=array('error'=> '1','msg'=>'El codigo no es valido o ha expirado');
+                echo json_encode($output,JSON_FORCE_OBJECT);
+                return true;
+            }
+            $query = "update usuarios set pass='#pass' where id_user='#id_user'";
+            $query=str_replace('#pass', sha1($_POST['password']), $query);
+            $query=str_replace('#id_user', $id_user, $query);
+            mysql_query($query,$conexion)or die(mysql_error());
+
+            $query="delete from forgot_password where id_user='#id_user'";
+            $query=str_replace('#id_user', $id_user, $query);
+            mysql_query($query,$conexion)or die(mysql_error());
+
+            $output=array('error'=> '0','msg'=>'Su password se ha cambiado correctamente');
             echo json_encode($output,JSON_FORCE_OBJECT);
             return true;
         }

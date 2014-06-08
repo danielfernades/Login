@@ -1,5 +1,43 @@
+////prueba
 $(document).ready(function() {
  
+
+	$('#reset').submit(function(e) {
+		e.preventDefault();
+ 		alert(id_user);
+		var data = $(this).serializeArray();
+		data.push({name: 'tag', value: 'reset_password'});
+		data.push({name: 'id_user', value: id_user});
+		//alert(data[2].value);
+		$.ajax({
+			url: 'main.php',
+			type: 'POST',
+			dataType: 'json',
+			data: data
+			
+		})
+		.done(function(resp) {  //true
+			if (resp.error>0)
+			{
+				alert(resp.msg);
+				self.location="login.html";
+			}
+			else
+			{
+				alert(resp.msg);
+				self.location="login.html";	
+			}
+
+		});
+ 		//alert('usuario si existe');
+		
+	})
+})
+
+////prueba
+$(document).ready(function() {
+ 
+
 	$('#login').submit(function(e) {
 		e.preventDefault();
  		
