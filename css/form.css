@@ -384,7 +384,7 @@
 	float: right;
 	height: 39px;
 	overflow: hidden;
-	margin: 10px 0 0 10px;
+	margin: 10px 0 0 20px;
 	padding: 0 25px;
 	outline: none;
 	border: 0;
@@ -708,6 +708,10 @@
 .form .button.button-secondary {
 	background-color: #b3b3b3;
 }
+
+.form .button.button-close {
+	background-color: #f40700;
+}
 .form .icon-append,
 .form .icon-prepend {
 	color: #ccc;
@@ -996,10 +1000,11 @@
 /* modal */
 /**/
 .form-modal {
-	position: fixed;
+	position: relative;
 	z-index: 1;
 	display: none;
-	width: 400px;
+	width: 500px;
+	height: 220%;
 }
 .form-modal-overlay {
 	position: fixed;
