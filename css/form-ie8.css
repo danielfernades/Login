@@ -1,0 +1,62 @@
+/**/
+/* defaults */
+/**/
+.form header {
+	background: rgb(248,248,248);
+}
+.form fieldset {
+	background: rgb(255,255,255);
+}
+.form footer {
+	background: rgb(248,248,248);
+}
+
+
+/**/
+/* file inputs */
+/**/
+.form .input-file .button input {
+	filter: alpha(opacity=0);
+}
+
+
+/**/
+/* radios and checkboxes */
+/**/
+.form .radio input + i:after,
+.form .checkbox input + i:after {
+	display: none;
+}
+.form .radio .checked + i:after,
+.form .checkbox .checked + i:after {
+	display: block;
+}
+
+
+/**/
+/* toggles */
+/**/
+.form .toggle input.checked + i:after {
+	content: 'ON';
+	text-align: right;
+}
+.form .toggle input.checked + i:before {
+	right: 36px;
+}
+
+
+/**/
+/* ratings */
+/**/
+.form .rating input.checked + label,
+.form .rating input.checked + label + input + label,
+.form .rating input.checked + label + input + label + input + label,
+.form .rating input.checked + label + input + label + input + label + input + label,
+.form .rating input.checked + label + input + label + input + label + input + label + input + label,
+.form .rating input.checked + label + input + label + input + label + input + label + input + label + input + label,
+.form .rating input.checked + label + input + label + input + label + input + label + input + label + input + label + input + label,
+.form .rating input.checked + label + input + label + input + label + input + label + input + label + input + label + input + label + input + label,
+.form .rating input.checked + label + input + label + input + label + input + label + input + label + input + label + input + label + input + label + input + label,
+.form .rating input.checked + label + input + label + input + label + input + label + input + label + input + label + input + label + input + label + input + label + input + label {
+	color: #2da5da;
+}
