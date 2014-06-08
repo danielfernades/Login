@@ -16,7 +16,7 @@ $(document).ready(function() {
 		})
 		.done(function() {  //true
 			$('span').html("Datos correctos");
-			self.location="admin.html";
+			self.location="top.html";
 
 		})
 		.fail(function() {  //false
